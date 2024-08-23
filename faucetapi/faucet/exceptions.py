@@ -1,0 +1,3 @@
+
+class EthTransactionFailedException(Exception):
+    pass
