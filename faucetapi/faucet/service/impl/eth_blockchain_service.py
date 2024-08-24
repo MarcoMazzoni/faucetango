@@ -1,6 +1,7 @@
 import json
 
 from eth_account.signers.local import LocalAccount
+from eth_typing import HexStr
 from web3 import HTTPProvider, Web3
 from web3.exceptions import Web3RPCError
 
@@ -20,7 +21,8 @@ class ETHBlockchainService(BlockchainService):
         )
         self._w3: Web3 = Web3(self._w3_provider)
         self._deposit_wallet_private_key = deposit_wallet_private_key
-        self._deposit_wallet_account: LocalAccount = self._w3.eth.account.from_key(self._deposit_wallet_private_key)
+        self._deposit_wallet_account: LocalAccount = self._w3.eth.account.from_key(
+            HexStr(self._deposit_wallet_private_key))
         self._chain_id = chain_id
 
     @property

@@ -2,22 +2,41 @@ version: '3.3'
 
 services:
 
-#  redis-cache:
-#    image: redis:7.0.11-alpine
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: faucetango_rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  redis:
+    image: redis:7.0.11-alpine
+    container_name: faucetango_redis_celery_backend
+
 
   django:
-    container_name: django
+    container_name: faucetango_django
     build:
-      context: ./faucetapi
+      context: .
+    #env_file:
+    #  - .env
     command: python manage.py runserver 0.0.0.0:8080
-    volumes:
-      - ./faucetapi:/usr/src/app/
     ports:
       - 8081:8080
-    environment:
-      - DEBUG=1
-      - SECRET_KEY=0930jd30j9jd09j09j109fj01j9f
-      - ALLOWED_HOSTS=localhost,127.0.0.1
     depends_on:
-      - redis-broker
+      - redis
+      - rabbitmq
+
+  celery:
+    container_name: faucetango_celery_worker
+    build:
+      context: .
+    #env_file:
+    #  - .env
+    command: celery --app=faucetapi worker -l INFO -Q celery:1,celery:2,celery:3
+    depends_on:
+      - rabbitmq
+      - redis
+      - django
+
 

@@ -1,12 +1,11 @@
 import os
-import time
 
 from celery import Celery
 from kombu import Exchange, Queue
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dcelery.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'faucetapi.settings')
 
-app = Celery('dcelery')
+app = Celery('faucet')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.conf.task_queues = [
