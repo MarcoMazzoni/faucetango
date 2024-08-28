@@ -17,6 +17,7 @@ click-plugins==1.1.1
 click-repl==0.3.0
 cytoolz==0.12.3
 Django==5.1
+django-prometheus==2.3.1
 djangorestframework==3.15.2
 eth-account==0.13.2
 eth-hash==0.7.0
@@ -32,6 +33,7 @@ idna==3.7
 kombu==5.4.0
 multidict==6.0.5
 parsimonious==0.10.0
+prometheus_client==0.20.0
 prompt_toolkit==3.0.47
 pycryptodome==3.20.0
 pydantic==2.8.2

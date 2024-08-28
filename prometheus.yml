@@ -1,0 +1,10 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    metrics_path: '/api/v1/prometheus-a3e86714-a105-48a0-ab03-f928903861ff/metrics'
+    static_configs:
+      - targets:
+        - localhost:8081
