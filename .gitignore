@@ -3,3 +3,5 @@ db.sqlite3
 *.env
 prova*.py
 .idea
+__pycache__
+*.pyc

@@ -18,4 +18,3 @@ class FundingTransactionSerializer(serializers.ModelSerializer):
             'updated_at',
         ]
         fields = '__all__'
-

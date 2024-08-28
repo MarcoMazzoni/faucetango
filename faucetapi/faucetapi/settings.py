@@ -130,13 +130,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_THROTTLE_CLASSES': [
-        'faucet.api.throttles.ReceiverAddressBurstRateThrottle',
-        'faucet.api.throttles.UserIPBurstRateThrottle'
-    ],
     'DEFAULT_THROTTLE_RATES': {
-        'receiver_burst': '2/min',
-        'user_ip_burst': '2/min',
+        'receiver_burst': '10/min',
+        'user_ip_burst': '10/min',
     }
 }
 

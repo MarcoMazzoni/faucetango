@@ -1,9 +1,11 @@
 import abc
 
+from faucet.types import EthTxType
+
 
 class BlockchainService(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def transfer_funds_from_deposit_wallet(self, receiver_address: str, amount: int) -> None:
+    def transfer_funds_from_deposit_wallet(self, receiver_address: str, amount: int) -> EthTxType:
         pass
 
     @abc.abstractmethod

@@ -18,9 +18,11 @@ services:
     container_name: faucetango_django
     build:
       context: .
-    #env_file:
-    #  - .env
     command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - type: bind
+        source: ./faucetapi/db.sqlite3
+        target: /usr/src/app/db.sqlite3
     ports:
       - 8081:8080
     depends_on:
@@ -31,12 +33,13 @@ services:
     container_name: faucetango_celery_worker
     build:
       context: .
-    #env_file:
-    #  - .env
-    command: celery --app=faucetapi worker -l INFO -Q celery:1,celery:2,celery:3
+    command: celery --app=faucetapi worker -l INFO -Q celery1
+    volumes:
+      - type: bind
+        source: ./faucetapi/db.sqlite3
+        target: /usr/src/app/db.sqlite3
     depends_on:
       - rabbitmq
       - redis
       - django
-
 
