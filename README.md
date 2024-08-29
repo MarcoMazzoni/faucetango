@@ -10,6 +10,16 @@ This should spawn the following containers:
 * prometheus - monitoring of django container
 * grafana
 
+Once the services are deployed, you should be able to connect to the two endpoints:
+* `http://localhost:8081/api/v1/faucet/fund`: POST/GET
+* `http://localhost:8081/api/v1/faucet/stats`: GET
+
+For `prometheus`:
+* `http://localhost:9090/targets`
+
+For the `grafana` dashboard:
+* `http://localhost:3000`
+
 ## Note 
 There is no `.env` file pushed in this repository. It should contain the following env variables:
 ```
